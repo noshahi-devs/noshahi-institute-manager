@@ -81,4 +81,22 @@ public static class PermissionNames
     public const string Pages_StudentAttendance_Create = "Pages.StudentAttendance.Create";
     public const string Pages_StudentAttendance_Edit = "Pages.StudentAttendance.Edit";
     public const string Pages_StudentAttendance_Delete = "Pages.StudentAttendance.Delete";
+
+    // ➕ Add Test-related permissions
+    public const string Pages_Tests = "Pages.Tests";
+    public const string Pages_Tests_Create = "Pages.Tests.Create";
+    public const string Pages_Tests_Edit = "Pages.Tests.Edit";
+    public const string Pages_Tests_Delete = "Pages.Tests.Delete";
+
+    // ➕ Add StudentResult-related permissions
+    public const string Pages_StudentResults = "Pages.StudentResults";
+    public const string Pages_StudentResults_Create = "Pages.StudentResults.Create";
+    public const string Pages_StudentResults_Edit = "Pages.StudentResults.Edit";
+    public const string Pages_StudentResults_Delete = "Pages.StudentResults.Delete";
+
+    // ➕ Add SmsNotification-related permissions
+    public const string Pages_SmsNotifications = "Pages.SmsNotifications";
+    public const string Pages_SmsNotifications_Create = "Pages.SmsNotifications.Create";
+    public const string Pages_SmsNotifications_Edit = "Pages.SmsNotifications.Edit";
+    public const string Pages_SmsNotifications_Delete = "Pages.SmsNotifications.Delete";
 }

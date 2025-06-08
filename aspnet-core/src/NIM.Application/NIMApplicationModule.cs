@@ -49,6 +49,9 @@ public class NIMApplicationModule : AbpModule
             config.AddProfile<NIM.LeaveApplications.Dto.LeaveApplicationMapProfile>();
             config.AddProfile<NIM.StaffAttendances.Dto.StaffAttendanceMapProfile>();
             config.AddProfile<NIM.StudentAttendances.Dto.StudentAttendanceMapProfile>();
+            config.AddProfile<NIM.Tests.Dto.TestMapProfile>();
+            config.AddProfile<NIM.StudentResults.Dto.StudentResultMapProfile>();
+            config.AddProfile<NIM.SmsNotifications.Dto.SmsNotificationMapProfile>();
 
         });
     }                   

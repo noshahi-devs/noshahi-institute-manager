@@ -79,6 +79,24 @@ public class NIMAuthorizationProvider : AuthorizationProvider
         studentAttendance.CreateChildPermission(PermissionNames.Pages_StudentAttendance_Edit, L("EditStudentAttendance"));
         studentAttendance.CreateChildPermission(PermissionNames.Pages_StudentAttendance_Delete, L("DeleteStudentAttendance"));
 
+        // Add Test permissions
+        var tests = context.CreatePermission(PermissionNames.Pages_Tests, L("Tests"));
+        tests.CreateChildPermission(PermissionNames.Pages_Tests_Create, L("CreateTest"));
+        tests.CreateChildPermission(PermissionNames.Pages_Tests_Edit, L("EditTest"));
+        tests.CreateChildPermission(PermissionNames.Pages_Tests_Delete, L("DeleteTest"));
+
+        // Add StudentResult permissions
+        var studentResults = context.CreatePermission(PermissionNames.Pages_StudentResults, L("StudentResults"));
+        studentResults.CreateChildPermission(PermissionNames.Pages_StudentResults_Create, L("CreateStudentResult"));
+        studentResults.CreateChildPermission(PermissionNames.Pages_StudentResults_Edit, L("EditStudentResult"));
+        studentResults.CreateChildPermission(PermissionNames.Pages_StudentResults_Delete, L("DeleteStudentResult"));
+
+        // Add SmsNotification permissions
+        var smsNotifications = context.CreatePermission(PermissionNames.Pages_SmsNotifications, L("SmsNotifications"));
+        smsNotifications.CreateChildPermission(PermissionNames.Pages_SmsNotifications_Create, L("CreateSmsNotification"));
+        smsNotifications.CreateChildPermission(PermissionNames.Pages_SmsNotifications_Edit, L("EditSmsNotification"));
+        smsNotifications.CreateChildPermission(PermissionNames.Pages_SmsNotifications_Delete, L("DeleteSmsNotification"));
+
     }
 
     private static ILocalizableString L(string name)

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NIM.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using NIM.EntityFrameworkCore;
 namespace NIM.Migrations
 {
     [DbContext(typeof(NIMDbContext))]
-    partial class NIMDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250608135731_Add_StudentResult_Entity")]
+    partial class Add_StudentResult_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1873,36 +1876,6 @@ namespace NIM.Migrations
                     b.ToTable("Sections");
                 });
 
-            modelBuilder.Entity("NIM.Entities.SmsNotification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("SentTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("SmsNotifications");
-                });
-
             modelBuilder.Entity("NIM.Entities.StaffAttendance", b =>
                 {
                     b.Property<int>("Id")
@@ -2533,17 +2506,6 @@ namespace NIM.Migrations
                         .IsRequired();
 
                     b.Navigation("Class");
-                });
-
-            modelBuilder.Entity("NIM.Entities.SmsNotification", b =>
-                {
-                    b.HasOne("NIM.Authorization.Users.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("NIM.Entities.StaffAttendance", b =>

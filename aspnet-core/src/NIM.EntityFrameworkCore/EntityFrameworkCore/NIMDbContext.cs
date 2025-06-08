@@ -22,6 +22,9 @@ public class NIMDbContext : AbpZeroDbContext<Tenant, Role, User, NIMDbContext>
     public DbSet<LeaveApplication> LeaveApplications { get; set; } // Add this line for your LeaveApplication entity
     public DbSet<StaffAttendance> StaffAttendances { get; set; } // Add this line for your StaffAttendance entity
     public DbSet<StudentAttendance> StudentAttendances { get; set; } // Add this line for your StudentAttendance entity
+    public DbSet<Test> Tests { get; set; } // Add this line for your Test entity
+    public DbSet<StudentResult> StudentResults { get; set; } // Add this line for your StudentResult entity
+    public DbSet<SmsNotification> SmsNotifications { get; set; } // Add this line for your SmsNotification entity
 
     public NIMDbContext(DbContextOptions<NIMDbContext> options)
         : base(options)
