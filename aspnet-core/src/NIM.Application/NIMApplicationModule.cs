@@ -1,4 +1,6 @@
-﻿using Abp.AutoMapper;
+﻿using NIM.Classes.Dto;  
+using NIM.Sections.Dto;
+using Abp.AutoMapper;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using NIM.Authorization;
@@ -30,6 +32,8 @@ public class NIMApplicationModule : AbpModule
         Configuration.Modules.AbpAutoMapper().Configurators.Add(config =>
         {
             config.AddProfile<CampusMapProfile>();
+            config.AddProfile<ClassMapProfile>();
+            config.AddProfile<SectionMapProfile>();
         });
-    }
+    }                   
 }

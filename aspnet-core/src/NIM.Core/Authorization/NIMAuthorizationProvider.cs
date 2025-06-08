@@ -1,4 +1,4 @@
-﻿using Abp.Authorization;
+using Abp.Authorization;
 using Abp.Localization;
 using Abp.MultiTenancy;
 
@@ -19,6 +19,17 @@ public class NIMAuthorizationProvider : AuthorizationProvider
         campuses.CreateChildPermission(PermissionNames.Pages_Campuses_Edit, L("EditCampus"));
         campuses.CreateChildPermission(PermissionNames.Pages_Campuses_Delete, L("DeleteCampus"));   
 
+        // Add Class permissions
+        var classes = context.CreatePermission(PermissionNames.Pages_Classes, L("Classes"));
+        classes.CreateChildPermission(PermissionNames.Pages_Classes_Create, L("CreateClass"));
+        classes.CreateChildPermission(PermissionNames.Pages_Classes_Edit, L("EditClass"));
+        classes.CreateChildPermission(PermissionNames.Pages_Classes_Delete, L("DeleteClass"));
+
+        // Add Section permissions
+        var sections = context.CreatePermission(PermissionNames.Pages_Sections, L("Sections"));
+        sections.CreateChildPermission(PermissionNames.Pages_Sections_Create, L("CreateSection"));
+        sections.CreateChildPermission(PermissionNames.Pages_Sections_Edit, L("EditSection"));
+        sections.CreateChildPermission(PermissionNames.Pages_Sections_Delete, L("DeleteSection"));
     }
 
     private static ILocalizableString L(string name)
