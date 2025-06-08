@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NIM.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using NIM.EntityFrameworkCore;
 namespace NIM.Migrations
 {
     [DbContext(typeof(NIMDbContext))]
-    partial class NIMDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250608124417_Add_StaffAttendance_Entity")]
+    partial class Add_StaffAttendance_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1897,39 +1900,6 @@ namespace NIM.Migrations
                     b.ToTable("StaffAttendances");
                 });
 
-            modelBuilder.Entity("NIM.Entities.StudentAttendance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("AttendanceDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("StudentAttendances");
-                });
-
             modelBuilder.Entity("NIM.Entities.StudentFee", b =>
                 {
                     b.Property<int>("Id")
@@ -2447,17 +2417,6 @@ namespace NIM.Migrations
                 });
 
             modelBuilder.Entity("NIM.Entities.StaffAttendance", b =>
-                {
-                    b.HasOne("NIM.Authorization.Users.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("NIM.Entities.StudentAttendance", b =>
                 {
                     b.HasOne("NIM.Authorization.Users.User", "User")
                         .WithMany()

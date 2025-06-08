@@ -61,6 +61,24 @@ public class NIMAuthorizationProvider : AuthorizationProvider
         studentFees.CreateChildPermission(PermissionNames.Pages_StudentFees_Edit, L("EditStudentFee"));
         studentFees.CreateChildPermission(PermissionNames.Pages_StudentFees_Delete, L("DeleteStudentFee"));
 
+        // Add SalaryRecord permissions
+        var salaryRecords = context.CreatePermission(PermissionNames.Pages_SalaryRecords, L("SalaryRecords"));
+        salaryRecords.CreateChildPermission(PermissionNames.Pages_SalaryRecords_Create, L("CreateSalaryRecord"));
+        salaryRecords.CreateChildPermission(PermissionNames.Pages_SalaryRecords_Edit, L("EditSalaryRecord"));
+        salaryRecords.CreateChildPermission(PermissionNames.Pages_SalaryRecords_Delete, L("DeleteSalaryRecord"));
+
+        // Add StaffAttendance permissions
+        var staffAttendance = context.CreatePermission(PermissionNames.Pages_StaffAttendance, L("StaffAttendance"));
+        staffAttendance.CreateChildPermission(PermissionNames.Pages_StaffAttendance_Create, L("CreateStaffAttendance"));
+        staffAttendance.CreateChildPermission(PermissionNames.Pages_StaffAttendance_Edit, L("EditStaffAttendance"));
+        staffAttendance.CreateChildPermission(PermissionNames.Pages_StaffAttendance_Delete, L("DeleteStaffAttendance"));
+
+        // Add StudentAttendance permissions
+        var studentAttendance = context.CreatePermission(PermissionNames.Pages_StudentAttendance, L("StudentAttendance"));
+        studentAttendance.CreateChildPermission(PermissionNames.Pages_StudentAttendance_Create, L("CreateStudentAttendance"));
+        studentAttendance.CreateChildPermission(PermissionNames.Pages_StudentAttendance_Edit, L("EditStudentAttendance"));
+        studentAttendance.CreateChildPermission(PermissionNames.Pages_StudentAttendance_Delete, L("DeleteStudentAttendance"));
+
     }
 
     private static ILocalizableString L(string name)

@@ -7,6 +7,8 @@ namespace NIM.Entities
 {
     public class TeacherProfile : FullAuditedEntity<int>
     {
+        public decimal MonthlySalary { get; set; }
+
         [Required]
         [ForeignKey("User")]
         public long UserId { get; set; }

@@ -18,6 +18,10 @@ public class NIMDbContext : AbpZeroDbContext<Tenant, Role, User, NIMDbContext>
     public DbSet<AccountantProfile> AccountantProfiles { get; set; } // Add this line for your AccountantProfile entity
     public DbSet<StudentProfile> StudentProfiles { get; set; } // Add this line for your StudentProfile entity
     public DbSet<StudentFee> StudentFees { get; set; } // Add this line for your StudentFee entity
+    public DbSet<SalaryRecord> SalaryRecords { get; set; } // Add this line for your SalaryRecord entity
+    public DbSet<LeaveApplication> LeaveApplications { get; set; } // Add this line for your LeaveApplication entity
+    public DbSet<StaffAttendance> StaffAttendances { get; set; } // Add this line for your StaffAttendance entity
+    public DbSet<StudentAttendance> StudentAttendances { get; set; } // Add this line for your StudentAttendance entity
 
     public NIMDbContext(DbContextOptions<NIMDbContext> options)
         : base(options)

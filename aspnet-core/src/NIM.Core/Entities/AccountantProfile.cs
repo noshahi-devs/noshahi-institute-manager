@@ -6,6 +6,8 @@ namespace NIM.Entities
 {
     public class AccountantProfile : Entity<int>
     {
+        public decimal MonthlySalary { get; set; }
+
         public long UserId { get; set; }
         public int CampusId { get; set; }
         public string CNIC { get; set; }

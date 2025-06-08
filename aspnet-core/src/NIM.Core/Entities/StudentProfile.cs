@@ -13,6 +13,7 @@ namespace NIM.Entities
         public DateTime? LeaveDate { get; set; }
         public string CNIC { get; set; }
         public bool IsActive { get; set; }
+        public decimal MonthlyFee { get; set; }
 
         public int ClassId { get; set; }
         public int SectionId { get; set; }

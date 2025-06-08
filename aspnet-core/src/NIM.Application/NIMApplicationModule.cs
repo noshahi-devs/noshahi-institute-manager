@@ -9,6 +9,7 @@ using Abp.Reflection.Extensions;
 using NIM.Authorization;
 using NIM.Campuses.Dto;
 using NIM.StudentProfiles.Dto;
+using NIM.LeaveApplications.Dto;
 
 namespace NIM;
 
@@ -44,6 +45,11 @@ public class NIMApplicationModule : AbpModule
             config.AddProfile<AccountantMapProfile>();
             config.AddProfile<StudentMapProfile>();
             config.AddProfile<NIM.StudentFees.Dto.StudentFeeMapProfile>();
+            config.AddProfile<NIM.SalaryRecords.Dto.SalaryMapProfile>();
+            config.AddProfile<NIM.LeaveApplications.Dto.LeaveApplicationMapProfile>();
+            config.AddProfile<NIM.StaffAttendances.Dto.StaffAttendanceMapProfile>();
+            config.AddProfile<NIM.StudentAttendances.Dto.StudentAttendanceMapProfile>();
+
         });
     }                   
 }

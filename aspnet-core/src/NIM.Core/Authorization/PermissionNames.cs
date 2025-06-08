@@ -63,4 +63,22 @@ public static class PermissionNames
     public const string Pages_StudentFees_Create = "Pages.StudentFees.Create";
     public const string Pages_StudentFees_Edit = "Pages.StudentFees.Edit";
     public const string Pages_StudentFees_Delete = "Pages.StudentFees.Delete";
+
+    // ➕ Add SalaryRecords-related permissions
+    public const string Pages_SalaryRecords = "Pages.SalaryRecords";
+    public const string Pages_SalaryRecords_Create = "Pages.SalaryRecords.Create";
+    public const string Pages_SalaryRecords_Edit = "Pages.SalaryRecords.Edit";
+    public const string Pages_SalaryRecords_Delete = "Pages.SalaryRecords.Delete";
+
+    // ➕ Add StaffAttendance-related permissions
+    public const string Pages_StaffAttendance = "Pages.StaffAttendance";
+    public const string Pages_StaffAttendance_Create = "Pages.StaffAttendance.Create";
+    public const string Pages_StaffAttendance_Edit = "Pages.StaffAttendance.Edit";
+    public const string Pages_StaffAttendance_Delete = "Pages.StaffAttendance.Delete";
+
+    // ➕ Add StudentAttendance-related permissions
+    public const string Pages_StudentAttendance = "Pages.StudentAttendance";
+    public const string Pages_StudentAttendance_Create = "Pages.StudentAttendance.Create";
+    public const string Pages_StudentAttendance_Edit = "Pages.StudentAttendance.Edit";
+    public const string Pages_StudentAttendance_Delete = "Pages.StudentAttendance.Delete";
 }
