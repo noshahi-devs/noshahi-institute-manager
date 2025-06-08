@@ -45,4 +45,10 @@ public static class PermissionNames
     public const string Pages_PrincipalProfiles_Create = "Pages.PrincipalProfiles.Create";
     public const string Pages_PrincipalProfiles_Edit = "Pages.PrincipalProfiles.Edit";
     public const string Pages_PrincipalProfiles_Delete = "Pages.PrincipalProfiles.Delete";
+
+    // ➕ Add AccountantProfile-related permissions
+    public const string Pages_AccountantProfiles = "Pages.AccountantProfiles";
+    public const string Pages_AccountantProfiles_Create = "Pages.AccountantProfiles.Create";
+    public const string Pages_AccountantProfiles_Edit = "Pages.AccountantProfiles.Edit";
+    public const string Pages_AccountantProfiles_Delete = "Pages.AccountantProfiles.Delete";
 }

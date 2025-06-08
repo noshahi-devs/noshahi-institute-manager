@@ -2,6 +2,7 @@ using NIM.Classes.Dto;
 using NIM.Sections.Dto;
 using NIM.TeacherProfiles.Dto;
 using NIM.PrincipalProfiles.Dto;
+using NIM.AccountantProfiles.Dto;
 using Abp.AutoMapper;
 using Abp.Modules;
 using Abp.Reflection.Extensions;

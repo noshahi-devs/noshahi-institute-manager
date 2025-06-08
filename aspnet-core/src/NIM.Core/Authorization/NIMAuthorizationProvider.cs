@@ -43,11 +43,12 @@ public class NIMAuthorizationProvider : AuthorizationProvider
         principalProfiles.CreateChildPermission(PermissionNames.Pages_PrincipalProfiles_Edit, L("EditPrincipalProfile"));
         principalProfiles.CreateChildPermission(PermissionNames.Pages_PrincipalProfiles_Delete, L("DeletePrincipalProfile"));
 
-        // Add Principal permissions
-        var principals = context.CreatePermission(PermissionNames.Pages_Principals, L("Principals"));
-        principals.CreateChildPermission(PermissionNames.Pages_Principals_Create, L("CreatePrincipal"));
-        principals.CreateChildPermission(PermissionNames.Pages_Principals_Edit, L("EditPrincipal"));
-        principals.CreateChildPermission(PermissionNames.Pages_Principals_Delete, L("DeletePrincipal"));
+        // Add AccountantProfile permissions
+        var accountantProfiles = context.CreatePermission(PermissionNames.Pages_AccountantProfiles, L("AccountantProfiles"));
+        accountantProfiles.CreateChildPermission(PermissionNames.Pages_AccountantProfiles_Create, L("CreateAccountantProfile"));
+        accountantProfiles.CreateChildPermission(PermissionNames.Pages_AccountantProfiles_Edit, L("EditAccountantProfile"));
+        accountantProfiles.CreateChildPermission(PermissionNames.Pages_AccountantProfiles_Delete, L("DeleteAccountantProfile"));
+
     }
 
     private static ILocalizableString L(string name)

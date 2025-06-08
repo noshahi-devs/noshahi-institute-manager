@@ -15,6 +15,7 @@ public class NIMDbContext : AbpZeroDbContext<Tenant, Role, User, NIMDbContext>
     public DbSet<Section> Sections { get; set; } // Add this line for your Section entity
     public DbSet<TeacherProfile> TeacherProfiles { get; set; } // Add this line for your TeacherProfile entity
     public DbSet<PrincipalProfile> PrincipalProfiles { get; set; } // Add this line for your PrincipalProfile entity
+    public DbSet<AccountantProfile> AccountantProfiles { get; set; } // Add this line for your AccountantProfile entity
 
     public NIMDbContext(DbContextOptions<NIMDbContext> options)
         : base(options)
