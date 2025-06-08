@@ -27,9 +27,22 @@ public static class PermissionNames
     public const string Pages_Sections_Edit = "Pages.Sections.Edit";
     public const string Pages_Sections_Delete = "Pages.Sections.Delete";
 
+
+    // ➕ Add Principal-related permissions
+    public const string Pages_Principals = "Pages.Principals";
+    public const string Pages_Principals_Create = "Pages.Principals.Create";
+    public const string Pages_Principals_Edit = "Pages.Principals.Edit";
+    public const string Pages_Principals_Delete = "Pages.Principals.Delete";
+
     // ➕ Add TeacherProfile-related permissions
     public const string Pages_TeacherProfiles = "Pages.TeacherProfiles";
     public const string Pages_TeacherProfiles_Create = "Pages.TeacherProfiles.Create";
     public const string Pages_TeacherProfiles_Edit = "Pages.TeacherProfiles.Edit";
     public const string Pages_TeacherProfiles_Delete = "Pages.TeacherProfiles.Delete";
+
+    // ➕ Add PrincipalProfile-related permissions
+    public const string Pages_PrincipalProfiles = "Pages.PrincipalProfiles";
+    public const string Pages_PrincipalProfiles_Create = "Pages.PrincipalProfiles.Create";
+    public const string Pages_PrincipalProfiles_Edit = "Pages.PrincipalProfiles.Edit";
+    public const string Pages_PrincipalProfiles_Delete = "Pages.PrincipalProfiles.Delete";
 }

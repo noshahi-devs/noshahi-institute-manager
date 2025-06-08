@@ -14,6 +14,7 @@ public class NIMDbContext : AbpZeroDbContext<Tenant, Role, User, NIMDbContext>
     public DbSet<Class> Classes { get; set; } // Also add this line for your Class entity
     public DbSet<Section> Sections { get; set; } // Add this line for your Section entity
     public DbSet<TeacherProfile> TeacherProfiles { get; set; } // Add this line for your TeacherProfile entity
+    public DbSet<PrincipalProfile> PrincipalProfiles { get; set; } // Add this line for your PrincipalProfile entity
 
     public NIMDbContext(DbContextOptions<NIMDbContext> options)
         : base(options)
@@ -34,6 +35,34 @@ public class NIMDbContext : AbpZeroDbContext<Tenant, Role, User, NIMDbContext>
         });
 
         // TeacherProfile → User and Campus foreign key relationships
+
+        // PrincipalProfile → User and Campus foreign key relationships
+        modelBuilder.Entity<PrincipalProfile>(entity =>
+        {
+            entity.HasOne(p => p.User)
+                  .WithMany()
+                  .HasForeignKey(p => p.UserId)
+                  .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasOne(p => p.Campus)
+                  .WithMany()
+                  .HasForeignKey(p => p.CampusId)
+                  .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        // PrincipalProfile → User and Campus foreign key relationships
+        modelBuilder.Entity<PrincipalProfile>(entity =>
+        {
+            entity.HasOne(p => p.User)
+                  .WithMany()
+                  .HasForeignKey(p => p.UserId)
+                  .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasOne(p => p.Campus)
+                  .WithMany()
+                  .HasForeignKey(p => p.CampusId)
+                  .OnDelete(DeleteBehavior.Restrict);
+        });
         modelBuilder.Entity<TeacherProfile>(entity =>
         {
             entity.HasOne(tp => tp.User)

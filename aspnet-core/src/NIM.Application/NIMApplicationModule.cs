@@ -1,6 +1,7 @@
 using NIM.Classes.Dto;  
 using NIM.Sections.Dto;
 using NIM.TeacherProfiles.Dto;
+using NIM.PrincipalProfiles.Dto;
 using Abp.AutoMapper;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
@@ -36,6 +37,8 @@ public class NIMApplicationModule : AbpModule
             config.AddProfile<ClassMapProfile>();
             config.AddProfile<SectionMapProfile>();
             config.AddProfile<TeacherProfileMapProfile>();
+            config.AddProfile<PrincipalMapProfile>();
+            config.AddProfile<PrincipalMapProfile>();
         });
     }                   
 }
