@@ -49,6 +49,18 @@ public class NIMAuthorizationProvider : AuthorizationProvider
         accountantProfiles.CreateChildPermission(PermissionNames.Pages_AccountantProfiles_Edit, L("EditAccountantProfile"));
         accountantProfiles.CreateChildPermission(PermissionNames.Pages_AccountantProfiles_Delete, L("DeleteAccountantProfile"));
 
+        // Add StudentProfile permissions
+        var studentProfiles = context.CreatePermission(PermissionNames.Pages_StudentProfiles, L("StudentProfiles"));
+        studentProfiles.CreateChildPermission(PermissionNames.Pages_StudentProfiles_Create, L("CreateStudentProfile"));
+        studentProfiles.CreateChildPermission(PermissionNames.Pages_StudentProfiles_Edit, L("EditStudentProfile"));
+        studentProfiles.CreateChildPermission(PermissionNames.Pages_StudentProfiles_Delete, L("DeleteStudentProfile"));
+
+        // Add StudentFee permissions
+        var studentFees = context.CreatePermission(PermissionNames.Pages_StudentFees, L("StudentFees"));
+        studentFees.CreateChildPermission(PermissionNames.Pages_StudentFees_Create, L("CreateStudentFee"));
+        studentFees.CreateChildPermission(PermissionNames.Pages_StudentFees_Edit, L("EditStudentFee"));
+        studentFees.CreateChildPermission(PermissionNames.Pages_StudentFees_Delete, L("DeleteStudentFee"));
+
     }
 
     private static ILocalizableString L(string name)

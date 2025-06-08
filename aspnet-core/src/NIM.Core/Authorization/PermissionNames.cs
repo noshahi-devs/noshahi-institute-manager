@@ -51,4 +51,16 @@ public static class PermissionNames
     public const string Pages_AccountantProfiles_Create = "Pages.AccountantProfiles.Create";
     public const string Pages_AccountantProfiles_Edit = "Pages.AccountantProfiles.Edit";
     public const string Pages_AccountantProfiles_Delete = "Pages.AccountantProfiles.Delete";
+
+    // ➕ Add StudentProfile-related permissions
+    public const string Pages_StudentProfiles = "Pages.StudentProfiles";
+    public const string Pages_StudentProfiles_Create = "Pages.StudentProfiles.Create";
+    public const string Pages_StudentProfiles_Edit = "Pages.StudentProfiles.Edit";
+    public const string Pages_StudentProfiles_Delete = "Pages.StudentProfiles.Delete";
+
+    // ➕ Add StudentFees-related permissions
+    public const string Pages_StudentFees = "Pages.StudentFees";
+    public const string Pages_StudentFees_Create = "Pages.StudentFees.Create";
+    public const string Pages_StudentFees_Edit = "Pages.StudentFees.Edit";
+    public const string Pages_StudentFees_Delete = "Pages.StudentFees.Delete";
 }

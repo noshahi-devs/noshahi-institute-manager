@@ -1,7 +1,6 @@
 using Abp.Domain.Entities.Auditing;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
 namespace NIM.Entities
 {
     public class Section : FullAuditedEntity<int>

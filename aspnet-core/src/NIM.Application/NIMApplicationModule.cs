@@ -8,6 +8,7 @@ using Abp.Modules;
 using Abp.Reflection.Extensions;
 using NIM.Authorization;
 using NIM.Campuses.Dto;
+using NIM.StudentProfiles.Dto;
 
 namespace NIM;
 
@@ -40,6 +41,9 @@ public class NIMApplicationModule : AbpModule
             config.AddProfile<TeacherProfileMapProfile>();
             config.AddProfile<PrincipalMapProfile>();
             config.AddProfile<PrincipalMapProfile>();
+            config.AddProfile<AccountantMapProfile>();
+            config.AddProfile<StudentMapProfile>();
+            config.AddProfile<NIM.StudentFees.Dto.StudentFeeMapProfile>();
         });
     }                   
 }

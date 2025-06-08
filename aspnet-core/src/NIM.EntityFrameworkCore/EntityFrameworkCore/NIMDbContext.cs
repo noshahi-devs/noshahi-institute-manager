@@ -16,6 +16,8 @@ public class NIMDbContext : AbpZeroDbContext<Tenant, Role, User, NIMDbContext>
     public DbSet<TeacherProfile> TeacherProfiles { get; set; } // Add this line for your TeacherProfile entity
     public DbSet<PrincipalProfile> PrincipalProfiles { get; set; } // Add this line for your PrincipalProfile entity
     public DbSet<AccountantProfile> AccountantProfiles { get; set; } // Add this line for your AccountantProfile entity
+    public DbSet<StudentProfile> StudentProfiles { get; set; } // Add this line for your StudentProfile entity
+    public DbSet<StudentFee> StudentFees { get; set; } // Add this line for your StudentFee entity
 
     public NIMDbContext(DbContextOptions<NIMDbContext> options)
         : base(options)
@@ -34,6 +36,18 @@ public class NIMDbContext : AbpZeroDbContext<Tenant, Role, User, NIMDbContext>
                   .HasForeignKey(d => d.CampusId)
                   .OnDelete(DeleteBehavior.Restrict);
         });
+
+        modelBuilder.Entity<StudentProfile>()
+            .HasOne(s => s.Section)
+            .WithMany()
+            .HasForeignKey(s => s.SectionId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<StudentFee>()
+            .HasOne(f => f.StudentProfile)
+            .WithMany(s => s.FeeRecords)
+            .HasForeignKey(f => f.StudentProfileId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         // TeacherProfile → User and Campus foreign key relationships
 

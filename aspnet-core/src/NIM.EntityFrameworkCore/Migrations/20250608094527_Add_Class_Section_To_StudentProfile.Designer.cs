@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NIM.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using NIM.EntityFrameworkCore;
 namespace NIM.Migrations
 {
     [DbContext(typeof(NIMDbContext))]
-    partial class NIMDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250608094527_Add_Class_Section_To_StudentProfile")]
+    partial class Add_Class_Section_To_StudentProfile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1792,45 +1795,6 @@ namespace NIM.Migrations
                     b.ToTable("Sections");
                 });
 
-            modelBuilder.Entity("NIM.Entities.StudentFee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("DueDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FeeType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsPaid")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("IssuedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("PaidDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StudentProfileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StudentProfileId");
-
-                    b.ToTable("StudentFees");
-                });
-
             modelBuilder.Entity("NIM.Entities.StudentProfile", b =>
                 {
                     b.Property<int>("Id")
@@ -2280,17 +2244,6 @@ namespace NIM.Migrations
                     b.Navigation("Class");
                 });
 
-            modelBuilder.Entity("NIM.Entities.StudentFee", b =>
-                {
-                    b.HasOne("NIM.Entities.StudentProfile", "StudentProfile")
-                        .WithMany("FeeRecords")
-                        .HasForeignKey("StudentProfileId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("StudentProfile");
-                });
-
             modelBuilder.Entity("NIM.Entities.StudentProfile", b =>
                 {
                     b.HasOne("NIM.Entities.Campus", "Campus")
@@ -2308,7 +2261,7 @@ namespace NIM.Migrations
                     b.HasOne("NIM.Entities.Section", "Section")
                         .WithMany()
                         .HasForeignKey("SectionId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("NIM.Authorization.Users.User", "User")
@@ -2441,11 +2394,6 @@ namespace NIM.Migrations
                     b.Navigation("Settings");
 
                     b.Navigation("Tokens");
-                });
-
-            modelBuilder.Entity("NIM.Entities.StudentProfile", b =>
-                {
-                    b.Navigation("FeeRecords");
                 });
 #pragma warning restore 612, 618
         }
