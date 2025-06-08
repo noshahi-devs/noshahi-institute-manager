@@ -2,6 +2,7 @@
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using NIM.Authorization;
+using NIM.Campuses.Dto;
 
 namespace NIM;
 
@@ -25,5 +26,10 @@ public class NIMApplicationModule : AbpModule
             // Scan the assembly for classes which inherit from AutoMapper.Profile
             cfg => cfg.AddMaps(thisAssembly)
         );
+        // Add this line to register your mapping profile
+        Configuration.Modules.AbpAutoMapper().Configurators.Add(config =>
+        {
+            config.AddProfile<CampusMapProfile>();
+        });
     }
 }
