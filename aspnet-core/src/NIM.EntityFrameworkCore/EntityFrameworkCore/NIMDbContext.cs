@@ -13,6 +13,7 @@ public class NIMDbContext : AbpZeroDbContext<Tenant, Role, User, NIMDbContext>
     public DbSet<Campus> Campuses { get; set; }
     public DbSet<Class> Classes { get; set; } // Also add this line for your Class entity
     public DbSet<Section> Sections { get; set; } // Add this line for your Section entity
+    public DbSet<TeacherProfile> TeacherProfiles { get; set; } // Add this line for your TeacherProfile entity
 
     public NIMDbContext(DbContextOptions<NIMDbContext> options)
         : base(options)
@@ -29,6 +30,20 @@ public class NIMDbContext : AbpZeroDbContext<Tenant, Role, User, NIMDbContext>
             entity.HasOne(d => d.Campus)
                   .WithMany()
                   .HasForeignKey(d => d.CampusId)
+                  .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        // TeacherProfile → User and Campus foreign key relationships
+        modelBuilder.Entity<TeacherProfile>(entity =>
+        {
+            entity.HasOne(tp => tp.User)
+                  .WithMany()
+                  .HasForeignKey(tp => tp.UserId)
+                  .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasOne(tp => tp.Campus)
+                  .WithMany()
+                  .HasForeignKey(tp => tp.CampusId)
                   .OnDelete(DeleteBehavior.Restrict);
         });
 

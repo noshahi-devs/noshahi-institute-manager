@@ -30,6 +30,12 @@ public class NIMAuthorizationProvider : AuthorizationProvider
         sections.CreateChildPermission(PermissionNames.Pages_Sections_Create, L("CreateSection"));
         sections.CreateChildPermission(PermissionNames.Pages_Sections_Edit, L("EditSection"));
         sections.CreateChildPermission(PermissionNames.Pages_Sections_Delete, L("DeleteSection"));
+
+        // Add TeacherProfile permissions
+        var teacherProfiles = context.CreatePermission(PermissionNames.Pages_TeacherProfiles, L("TeacherProfiles"));
+        teacherProfiles.CreateChildPermission(PermissionNames.Pages_TeacherProfiles_Create, L("CreateTeacherProfile"));
+        teacherProfiles.CreateChildPermission(PermissionNames.Pages_TeacherProfiles_Edit, L("EditTeacherProfile"));
+        teacherProfiles.CreateChildPermission(PermissionNames.Pages_TeacherProfiles_Delete, L("DeleteTeacherProfile"));
     }
 
     private static ILocalizableString L(string name)

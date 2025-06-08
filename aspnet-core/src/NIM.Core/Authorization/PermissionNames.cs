@@ -26,4 +26,10 @@ public static class PermissionNames
     public const string Pages_Sections_Create = "Pages.Sections.Create";
     public const string Pages_Sections_Edit = "Pages.Sections.Edit";
     public const string Pages_Sections_Delete = "Pages.Sections.Delete";
+
+    // ➕ Add TeacherProfile-related permissions
+    public const string Pages_TeacherProfiles = "Pages.TeacherProfiles";
+    public const string Pages_TeacherProfiles_Create = "Pages.TeacherProfiles.Create";
+    public const string Pages_TeacherProfiles_Edit = "Pages.TeacherProfiles.Edit";
+    public const string Pages_TeacherProfiles_Delete = "Pages.TeacherProfiles.Delete";
 }
