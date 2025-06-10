@@ -26,6 +26,7 @@ import { TableModule } from 'primeng/table';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { ServiceProxyModule } from './service-proxies/service-proxy.module';
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
         TableModule,
         PaginatorModule,
         ProgressBarModule,
-        AutoCompleteModule
+        AutoCompleteModule,
+        ServiceProxyModule
     ],
     declarations: [
         AbpPaginationControlsComponent,
@@ -66,7 +68,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
         CollapseModule,
         TabsModule,
         TableModule,
-        PaginatorModule
+        PaginatorModule,
+        ServiceProxyModule
     ]
 })
 export class SharedModule {

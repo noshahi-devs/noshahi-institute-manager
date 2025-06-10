@@ -41,8 +41,70 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
 
     getMenuItems(): MenuItem[] {
         return [
-            new MenuItem(this.l('About'), '/app/about', 'fas fa-info-circle'),
-            new MenuItem(this.l('HomePage'), '/app/home', 'fas fa-home'),
+            // new MenuItem(this.l('About'), '/app/about', 'fas fa-info-circle'),
+            // new MenuItem(this.l('HomePage'), '/app/home', 'fas fa-home'),
+            new MenuItem(
+                this.l('Campuses'),
+                '/app/campuses',
+                'fas fa-university',
+                'Pages.Campuses'
+            ),
+            //classes
+            new MenuItem(
+                this.l('Classes'),
+                '/app/classes',
+                'fas fa-chalkboard',
+                'Pages.Roles'
+            ),
+            //students
+            new MenuItem(
+                this.l('Students'),
+                '/app/students',
+                'fas fa-user-graduate',
+                'Pages.Roles'
+            ),
+            //teachers
+            new MenuItem(
+                this.l('Teachers'),
+                '/app/teachers',
+                'fas fa-chalkboard-teacher',
+                'Pages.Roles'
+            ),
+            //Attendance
+            new MenuItem(
+                this.l('Attendance'),
+                '/app/attendances',
+                'fas fa-clock',
+                'Pages.Roles'
+            ),
+            //Exams
+            new MenuItem(
+                this.l('Exams'),
+                '/app/exams',
+                'fas fa-graduation-cap',
+                'Pages.Roles'
+            ),
+            //Fees
+            new MenuItem(
+                this.l('Fees'),
+                '/app/fees',
+                'fas fa-money-bill-wave',
+                'Pages.Roles'
+            ),
+            //Salaries
+            new MenuItem(
+                this.l('Salaries'),
+                '/app/salaries',
+                'fas fa-money-bill-wave',
+                'Pages.Roles'
+            ),
+            //Leave
+            new MenuItem(
+                this.l('Leave'),
+                '/app/leaves',
+                'fas fa-people-carry',
+                'Pages.Roles'
+            ),
             new MenuItem(
                 this.l('Roles'),
                 '/app/roles',

@@ -27,6 +27,12 @@ import { AppComponent } from './app.component';
                         canActivate: [AppRouteGuard]
                     },
                     {
+                        path: 'campuses',
+                        loadChildren: () => import('./campuses/campuses.module').then((m) => m.CampusesModule),
+                        data: { permission: 'Pages.Campuses' },
+                        canActivate: [AppRouteGuard]
+                    },
+                    {
                         path: 'roles',
                         loadChildren: () => import('./roles/roles.module').then((m) => m.RolesModule),
                         data: { permission: 'Pages.Roles' },
