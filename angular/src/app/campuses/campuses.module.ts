@@ -5,6 +5,7 @@ import { CampusesComponent } from './campuses.component';
 import { CreateCampusDialogComponent } from './create-campus/create-campus-dialog.component';
 import { EditCampusDialogComponent } from './edit-campus/edit-campus-dialog.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -12,6 +13,6 @@ import { CommonModule } from '@angular/common';
         CreateCampusDialogComponent,
         EditCampusDialogComponent
     ],
-    imports: [SharedModule, CampusesRoutingModule, CommonModule],
+    imports: [SharedModule, CampusesRoutingModule, CommonModule, FormsModule],
 })
 export class CampusesModule {}

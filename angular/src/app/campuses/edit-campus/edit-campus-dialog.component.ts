@@ -4,6 +4,7 @@ import {
   OnInit,
   EventEmitter,
   Output,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AppComponentBase } from '@shared/app-component-base';
@@ -26,7 +27,8 @@ export class EditCampusDialogComponent extends AppComponentBase
   constructor(
     injector: Injector,
     private _campusService: CampusServiceProxy,
-    public bsModalRef: BsModalRef
+    public bsModalRef: BsModalRef,
+    private _cdr: ChangeDetectorRef
   ) {
     super(injector);
   }
@@ -34,6 +36,7 @@ export class EditCampusDialogComponent extends AppComponentBase
   ngOnInit(): void {
     this._campusService.get(this.id).subscribe((result) => {
       this.campus = result;
+      this._cdr.detectChanges();
     });
   }
 
