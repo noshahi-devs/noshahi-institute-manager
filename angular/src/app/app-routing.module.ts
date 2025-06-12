@@ -11,6 +11,16 @@ import { AppComponent } from './app.component';
                 component: AppComponent,
                 children: [
                     {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'dashboard'
+                    },
+                    {
+                        path: 'dashboard',
+                        loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+                        canActivate: [AppRouteGuard]
+                    },
+                    {
                         path: 'home',
                         loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
                         canActivate: [AppRouteGuard]

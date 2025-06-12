@@ -1,4 +1,4 @@
-<div [@routerTransition]>
+<!-- <div [@routerTransition]>
   <section class="content-header">
     <div class="container-fluid">
       <div class="row">
@@ -28,13 +28,14 @@
                   </button>
                 </div>
                 <input
-                  type="text"
-                  class="form-control"
-                  name="keyword"
-                  [placeholder]="'SearchWithThreeDot' | localize"
-                  [(ngModel)]="keyword"
-                  (keyup.enter)="refresh()"
-                />
+  pInputText
+  type="text"
+  name="keyword"
+  [placeholder]="'SearchWithThreeDot' | localize"
+  [(ngModel)]="keyword"
+  (keyup.enter)="refresh()"
+/>
+
               </div>
             </div>
           </div>
@@ -90,21 +91,17 @@
                       </span>
                     </td>
                     <td>
-                      <button
-                        type="button"
-                        class="btn btn-sm bg-secondary"
-                        (click)="editCampus(record)"
-                      >
-                        <i class="fas fa-pencil-alt"></i>
-                        {{ "Edit" | localize }}
+                      <button pButton type="button" (click)="editCampus(record)"
+                        class="p-button-sm p-button-secondary">
+                        <i class="pi pi-pencil"></i>
+                        Edit
                       </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm bg-danger mx-2"
-                        (click)="delete(record)"
-                      >
-                        <i class="fas fa-trash"></i>
-                        {{ "Delete" | localize }}
+
+
+                      <button pButton type="button" (click)="delete(record)"
+                        class="p-button-sm p-button-danger">
+                        <i class="pi pi-trash"></i>
+                        Delete
                       </button>
                     </td>
                   </tr>
@@ -148,4 +145,144 @@
       </div>
     </div>
   </section>
+</div> -->
+<div [@routerTransition] class="p-4">
+  <p-toast></p-toast>
+  <app-create-campus-dialog
+    [(visible)]="createDialogVisible"
+    (onSave)="refresh()"
+  ></app-create-campus-dialog>
+  <app-edit-campus-dialog
+    [(visible)]="editDialogVisible"
+    [id]="selectedCampusId"
+    (onSave)="refresh()"
+  ></app-edit-campus-dialog>
+  <!-- Toolbar -->
+  <p-toolbar class="mb-6">
+    <ng-template #start>
+      <div class="flex">
+        <p-button
+          label="Create"
+          icon="pi pi-plus"
+          severity="success"
+          (onClick)="createCampus()"
+        ></p-button>
+
+        <p-button
+          label="Delete"
+          icon="pi pi-trash"
+          severity="danger"
+          [disabled]="!selectedCampuses?.length"
+          (onClick)="deleteSelectedCampuses()"
+        ></p-button>
+      </div>
+    </ng-template>
+  
+    <ng-template #end>
+      <p-button
+        label="Refresh"
+        icon="pi pi-refresh"
+        severity="secondary"
+        (onClick)="refresh()"
+      ></p-button>
+    </ng-template>
+  </p-toolbar>
+  
+  
+
+  <!-- Table + Search -->
+  <p-table
+    #dataTable
+    [value]="campuses"
+    [(selection)]="selectedCampuses"
+    dataKey="id"
+    selectionMode="multiple"
+    [lazy]="true"
+    [loading]="isTableLoading"
+    [totalRecords]="totalItems"
+    [paginator]="false"
+    [sortMode]="'multiple'"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    (onLazyLoad)="list($event)"
+  >
+    <!-- Caption: Search Bar -->
+    <ng-template pTemplate="caption">
+      <div class="flex items-center justify-between">
+        <h5 class="m-0">Manage Campuses</h5>
+        <p-iconfield>
+          <p-inputicon styleClass="pi pi-search" />
+          <input
+            pInputText
+            type="text"
+            [(ngModel)]="keyword"
+            placeholder="Search..."
+            (keyup.enter)="refresh()"
+          />
+        </p-iconfield>
+      </div>
+    </ng-template>
+
+    <!-- Table Headers -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="name">
+          {{ 'CampusName' | localize }}
+          <p-sortIcon field="name" />
+        </th>
+        <th pSortableColumn="address">
+          {{ 'Address' | localize }}
+          <p-sortIcon field="address" />
+        </th>
+        <th>{{ 'Actions' | localize }}</th>
+      </tr>
+    </ng-template>
+
+    <!-- Table Rows -->
+    <ng-template pTemplate="body" let-record>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="record"></p-tableCheckbox>
+        </td>
+        <td>{{ record.name }}</td>
+        <td>{{ record.address }}</td>
+        <td>
+          <div class="flex gap-2">
+            <p-button
+              icon="pi pi-pencil"
+              severity="secondary"
+              size="small"
+              (onClick)="editCampus(record)"
+            ></p-button>
+            <p-button
+              icon="pi pi-trash"
+              severity="danger"
+              size="small"
+              (onClick)="delete(record)"
+            ></p-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- No Data -->
+  <div class="text-center py-4" *ngIf="totalItems === 0">
+    {{ 'NoData' | localize }}
+  </div>
+
+  <!-- Pagination -->
+  <div class="flex justify-between items-center mt-4">
+    <div></div>
+    <p-paginator
+      [rows]="pageSize"
+      [totalRecords]="totalItems"
+      [showCurrentPageReport]="true"
+      [currentPageReportTemplate]="'TotalRecordsCount' | localize : totalItems"
+      (onPageChange)="list($event)"
+    />
+  </div>
 </div>
+

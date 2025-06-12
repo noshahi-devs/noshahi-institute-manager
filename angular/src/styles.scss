@@ -1,0 +1,5 @@
+/* Force PrimeNG dialog and overlay to be on top */
+.p-dialog-mask,
+.p-dialog {
+  z-index: 99999 !important;
+}
