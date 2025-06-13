@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
 import { CampusesRoutingModule } from './campuses-routing.module';
 import { CampusesComponent } from './campuses.component';
-import { CreateCampusDialogComponent } from './create-campus/create-campus-dialog.component';
-import { EditCampusDialogComponent } from './edit-campus/edit-campus-dialog.component';
+// import { CreateCampusDialogComponent } from './create-campus/create-campus-dialog.component';
+// import { EditCampusDialogComponent } from './edit-campus/edit-campus-dialog.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
@@ -29,11 +29,11 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 
 @NgModule({
     declarations: [
-        CampusesComponent,
-        CreateCampusDialogComponent,
-        EditCampusDialogComponent
+        // CreateCampusDialogComponent,
+        // EditCampusDialogComponent
     ],
     imports: [
+        CampusesComponent,
         SharedModule, 
         CampusesRoutingModule, 
         CommonModule, 

@@ -49,7 +49,7 @@
                 #dataTable
                 sortMode="multiple"
                 (onLazyLoad)="list($event)"
-                [value]="campuses"
+                [value]="items"
                 [paginator]="false"
                 [lazy]="true"
                 [loading]="isTableLoading"
@@ -193,8 +193,7 @@
   <!-- Table + Search -->
   <p-table
     #dataTable
-    [value]="campuses"
-    [(selection)]="selectedCampuses"
+    [value]="items" [(selection)]="selectedItems"
     dataKey="id"
     selectionMode="multiple"
     [lazy]="true"
