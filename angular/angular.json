@@ -28,6 +28,11 @@
                 "glob": "abp.signalr-client.js",
                 "input": "node_modules/abp-web-resources/Abp/Framework/scripts/libs",
                 "output": "/assets/abp"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@primeng/themes",
+                "output": "assets/themes"
               }
             ],
             "styles": [
@@ -35,10 +40,9 @@
               "node_modules/sweetalert2/dist/sweetalert2.css",
               "src/assets/freeze-ui/freeze-ui.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "node_modules/admin-lte-css-only/css/adminlte.min.css",
               "src/shared/core.less",
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css"
+              "node_modules/primeicons/primeicons.css",
+              "src/assets/layout/layout.scss"
             ],
             "scripts": [
               "node_modules/moment/min/moment.min.js",
