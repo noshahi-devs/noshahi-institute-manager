@@ -11,6 +11,16 @@ import { AppComponent } from './app.component';
                 component: AppComponent,
                 children: [
                     {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'dashboard'
+                    },
+                    {
+                        path: 'dashboard',
+                        loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+                        canActivate: [AppRouteGuard]
+                    },
+                    {
                         path: 'home',
                         loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
                         canActivate: [AppRouteGuard]
@@ -24,6 +34,12 @@ import { AppComponent } from './app.component';
                         path: 'users',
                         loadChildren: () => import('./users/users.module').then((m) => m.UsersModule),
                         data: { permission: 'Pages.Users' },
+                        canActivate: [AppRouteGuard]
+                    },
+                    {
+                        path: 'campuses',
+                        loadChildren: () => import('./campuses/campuses.module').then((m) => m.CampusesModule),
+                        data: { permission: 'Pages.Campuses' },
                         canActivate: [AppRouteGuard]
                     },
                     {

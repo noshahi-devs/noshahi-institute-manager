@@ -1,0 +1,75 @@
+<p-dialog
+  header="Edit Campus"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '450px' }"
+  [baseZIndex]="10000"
+  (onHide)="closeDialog()"
+>
+  <form #editCampusForm="ngForm" (ngSubmit)="save()" *ngIf="campus">
+    <div class="field flex flex-col mb-5">
+      <p-floatLabel>
+        <input
+          pInputText
+          id="edit-campus-name"
+          type="text"
+          class="w-full"
+          name="name"
+          required
+          minlength="2"
+          maxlength="32"
+          [(ngModel)]="campus.name"
+          #nameModel="ngModel"
+        />
+        <label for="edit-campus-name">Name</label>
+      </p-floatLabel>
+      <small
+        class="p-error mt-1"
+        *ngIf="nameModel.invalid && (nameModel.dirty || nameModel.touched)"
+      >
+        <span *ngIf="nameModel.errors?.['required']">Name is required.</span>
+        <span *ngIf="nameModel.errors?.['minlength']">Name must be at least 2 characters long.</span>
+      </small>
+    </div>
+
+    <div class="field flex flex-col">
+      <p-floatLabel>
+        <textarea
+          pInputTextarea
+          id="edit-campus-address"
+          [rows]="3"
+          class="w-full"
+          name="address"
+          required
+          minlength="2"
+          maxlength="128"
+          [(ngModel)]="campus.address"
+          #addressModel="ngModel"
+        ></textarea>
+        <label for="edit-campus-address">Address</label>
+      </p-floatLabel>
+      <small
+        class="p-error mt-1"
+        *ngIf="addressModel.invalid && (addressModel.dirty || addressModel.touched)"
+      >
+        <span *ngIf="addressModel.errors?.['required']">Address is required.</span>
+        <span *ngIf="addressModel.errors?.['minlength']">Address must be at least 2 characters long.</span>
+      </small>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Cancel"
+      icon="pi pi-times"
+      styleClass="p-button-text"
+      (click)="closeDialog()"
+    ></p-button>
+    <p-button
+      label="Save"
+      icon="pi pi-check"
+      [loading]="saving"
+      [disabled]="!editCampusForm?.form.valid || saving"
+      (click)="save()"
+    ></p-button>
+  </ng-template>
+</p-dialog>

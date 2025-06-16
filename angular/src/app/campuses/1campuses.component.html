@@ -1,0 +1,287 @@
+<!-- <div [@routerTransition]>
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          <h1>{{ "Campuses" | localize }}</h1>
+        </div>
+        <div class="col-6 text-right">
+          <a href="javascript:;" class="btn bg-blue" (click)="createCampus()">
+            <i class="fa fa-plus-square"></i>
+            {{ "Create" | localize }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="content px-2 pb-5">
+    <div class="container-fluid">
+      <div class="card mb-0 table-wrapper">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-6">&emsp;</div>
+            <div class="col-md-6">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button type="button" class="btn bg-blue" (click)="refresh()">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+                <input
+  pInputText
+  type="text"
+  name="keyword"
+  [placeholder]="'SearchWithThreeDot' | localize"
+  [(ngModel)]="keyword"
+  (keyup.enter)="refresh()"
+/>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <div
+              class="primeng-datatable-container table-striped table-bordered"
+            >
+              <p-table
+                #dataTable
+                sortMode="multiple"
+                (onLazyLoad)="list($event)"
+                [value]="items"
+                [paginator]="false"
+                [lazy]="true"
+                [loading]="isTableLoading"
+                [totalRecords]="totalItems"
+                [tableStyle]="{ 'min-width': '50rem' }"
+              >
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th style="min-width: 150px" pSortableColumn="name">
+                      {{ "CampusName" | localize }}
+                      <p-sortIcon field="name"></p-sortIcon>
+                    </th>
+                    <th style="min-width: 150px" pSortableColumn="address">
+                      {{ "Address" | localize }}
+                      <p-sortIcon field="address"></p-sortIcon>
+                    </th>
+                    <th style="min-width: 130px">
+                      {{ "Actions" | localize }}
+                    </th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-record="$implicit">
+                  <tr>
+                    <td>
+                      <span class="p-column-title">{{
+                        "CampusName" | localize
+                      }}</span>
+                      <span>
+                        {{ record.name }}
+                      </span>
+                    </td>
+                    <td>
+                      <span class="p-column-title">{{
+                        "Address" | localize
+                      }}</span>
+                      <span>
+                        {{ record.address }}
+                      </span>
+                    </td>
+                    <td>
+                      <button pButton type="button" (click)="editCampus(record)"
+                        class="p-button-sm p-button-secondary">
+                        <i class="pi pi-pencil"></i>
+                        Edit
+                      </button>
+
+
+                      <button pButton type="button" (click)="delete(record)"
+                        class="p-button-sm p-button-danger">
+                        <i class="pi pi-trash"></i>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+              <div
+                class="primeng-no-data"
+                *ngIf="totalItems === 0"
+              >
+                {{ "NoData" | localize }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer table-card-footer bg-white border-top">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-sm-4 col-12 text-sm-left text-center">
+              <button class="btn btn-secondary" (click)="refresh()">
+                <i class="fas fa-redo-alt"></i>
+              </button>
+            </div>
+            <div class="col-sm-8 col-12">
+              <div class="float-sm-right m-auto">
+                <div class="primeng-paging-container">
+                  <p-paginator
+                    [rows]="pageSize"
+                    #paginator
+                    (onPageChange)="list($event)"
+                    [totalRecords]="totalItems"
+                    [showCurrentPageReport]="true"
+                    [currentPageReportTemplate]="
+                      'TotalRecordsCount'
+                        | localize : totalItems
+                    "
+                  ></p-paginator>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div> -->
+<div [@routerTransition] class="p-4">
+  <p-toast></p-toast>
+  <app-create-campus-dialog
+    [(visible)]="createDialogVisible"
+    (onSave)="refresh()"
+  ></app-create-campus-dialog>
+  <app-edit-campus-dialog
+    [(visible)]="editDialogVisible"
+    [id]="selectedCampusId"
+    (onSave)="refresh()"
+  ></app-edit-campus-dialog>
+  <!-- Toolbar -->
+  <p-toolbar class="mb-6">
+    <ng-template #start>
+      <div class="flex">
+        <p-button
+          label="Create"
+          icon="pi pi-plus"
+          severity="success"
+          (onClick)="createCampus()"
+        ></p-button>
+
+        <p-button
+          label="Delete"
+          icon="pi pi-trash"
+          severity="danger"
+          [disabled]="!selectedCampuses?.length"
+          (onClick)="deleteSelectedCampuses()"
+        ></p-button>
+      </div>
+    </ng-template>
+  
+    <ng-template #end>
+      <p-button
+        label="Refresh"
+        icon="pi pi-refresh"
+        severity="secondary"
+        (onClick)="refresh()"
+      ></p-button>
+    </ng-template>
+  </p-toolbar>
+  
+  
+
+  <!-- Table + Search -->
+  <p-table
+    #dataTable
+    [value]="items" [(selection)]="selectedItems"
+    dataKey="id"
+    selectionMode="multiple"
+    [lazy]="true"
+    [loading]="isTableLoading"
+    [totalRecords]="totalItems"
+    [paginator]="false"
+    [sortMode]="'multiple'"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    (onLazyLoad)="list($event)"
+  >
+    <!-- Caption: Search Bar -->
+    <ng-template pTemplate="caption">
+      <div class="flex items-center justify-between">
+        <h5 class="m-0">Manage Campuses</h5>
+        <p-iconfield>
+          <p-inputicon styleClass="pi pi-search" />
+          <input
+            pInputText
+            type="text"
+            [(ngModel)]="keyword"
+            placeholder="Search..."
+            (keyup.enter)="refresh()"
+          />
+        </p-iconfield>
+      </div>
+    </ng-template>
+
+    <!-- Table Headers -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="name">
+          {{ 'CampusName' | localize }}
+          <p-sortIcon field="name" />
+        </th>
+        <th pSortableColumn="address">
+          {{ 'Address' | localize }}
+          <p-sortIcon field="address" />
+        </th>
+        <th>{{ 'Actions' | localize }}</th>
+      </tr>
+    </ng-template>
+
+    <!-- Table Rows -->
+    <ng-template pTemplate="body" let-record>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="record"></p-tableCheckbox>
+        </td>
+        <td>{{ record.name }}</td>
+        <td>{{ record.address }}</td>
+        <td>
+          <div class="flex gap-2">
+            <p-button
+              icon="pi pi-pencil"
+              severity="secondary"
+              size="small"
+              (onClick)="editCampus(record)"
+            ></p-button>
+            <p-button
+              icon="pi pi-trash"
+              severity="danger"
+              size="small"
+              (onClick)="delete(record)"
+            ></p-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- No Data -->
+  <div class="text-center py-4" *ngIf="totalItems === 0">
+    {{ 'NoData' | localize }}
+  </div>
+
+  <!-- Pagination -->
+  <div class="flex justify-between items-center mt-4">
+    <div></div>
+    <p-paginator
+      [rows]="pageSize"
+      [totalRecords]="totalItems"
+      [showCurrentPageReport]="true"
+      [currentPageReportTemplate]="'TotalRecordsCount' | localize : totalItems"
+      (onPageChange)="list($event)"
+    />
+  </div>
+</div>
+

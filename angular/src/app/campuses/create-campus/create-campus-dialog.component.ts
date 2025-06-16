@@ -1,114 +1,6 @@
-// import {
-//   Component,
-//   Injector,
-//   OnInit,
-//   EventEmitter,
-//   Output,
-//   ChangeDetectorRef
-// } from '@angular/core';
-// import { BsModalRef } from 'ngx-bootstrap/modal';
-// import { forEach as _forEach, map as _map } from 'lodash-es';
-// import { AppComponentBase } from '@shared/app-component-base';
-// import {
-//   UserServiceProxy,
-//   CreateUserDto,
-//   RoleDto
-// } from '@shared/service-proxies/service-proxies';
-// import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
-
-// @Component({
-//   templateUrl: './create-user-dialog.component.html'
-// })
-// export class CreateUserDialogComponent extends AppComponentBase
-//   implements OnInit {
-//   saving = false;
-//   user = new CreateUserDto();
-//   roles: RoleDto[] = [];
-//   checkedRolesMap: { [key: string]: boolean } = {};
-//   defaultRoleCheckedStatus = false;
-//   passwordValidationErrors: Partial<AbpValidationError>[] = [
-//     {
-//       name: 'pattern',
-//       localizationKey:
-//         'PasswordsMustBeAtLeast8CharactersContainLowercaseUppercaseNumber',
-//     },
-//   ];
-//   confirmPasswordValidationErrors: Partial<AbpValidationError>[] = [
-//     {
-//       name: 'validateEqual',
-//       localizationKey: 'PasswordsDoNotMatch',
-//     },
-//   ];
-
-//   @Output() onSave = new EventEmitter<any>();
-
-//   constructor(
-//     injector: Injector,
-//     public _userService: UserServiceProxy,
-//     public bsModalRef: BsModalRef,
-//     private cd: ChangeDetectorRef
-//   ) {
-//     super(injector);
-//   }
-
-//   ngOnInit(): void {
-//     this.user.isActive = true;
-
-//     this._userService.getRoles().subscribe((result) => {
-//       this.roles = result.items;
-//       this.setInitialRolesStatus();
-//       this.cd.detectChanges();
-//     });
-//   }
-
-//   setInitialRolesStatus(): void {
-//     _map(this.roles, (item) => {
-//       this.checkedRolesMap[item.normalizedName] = this.isRoleChecked(
-//         item.normalizedName
-//       );
-//     });
-//   }
-
-//   isRoleChecked(normalizedName: string): boolean {
-//     // just return default role checked status
-//     // it's better to use a setting
-//     return this.defaultRoleCheckedStatus;
-//   }
-
-//   onRoleChange(role: RoleDto, $event) {
-//     this.checkedRolesMap[role.normalizedName] = $event.target.checked;
-//   }
-
-//   getCheckedRoles(): string[] {
-//     const roles: string[] = [];
-//     _forEach(this.checkedRolesMap, function (value, key) {
-//       if (value) {
-//         roles.push(key);
-//       }
-//     });
-//     return roles;
-//   }
-
-//   save(): void {
-//     this.saving = true;
-
-//     this.user.roleNames = this.getCheckedRoles();
-
-//     this._userService.create(this.user).subscribe(
-//       () => {
-//         this.notify.info(this.l('SavedSuccessfully'));
-//         this.bsModalRef.hide();
-//         this.onSave.emit();
-//       },
-//       () => {
-//         this.saving = false;
-//       }
-//     );
-//   }
-// }
-
-
 import { Component, OnInit, EventEmitter, Output, ChangeDetectorRef, Injector } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -117,17 +9,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { forEach as _forEach, map as _map } from 'lodash-es';
-import { AppComponentBase } from '@shared/app-component-base';
-import {
-  UserServiceProxy,
-  CreateUserDto,
-  RoleDto
-} from '@shared/service-proxies/service-proxies';
-import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
+import { CampusServiceProxy, CreateCampusDto } from '@shared/service-proxies/service-proxies';
 
 @Component({
-  selector: 'app-create-user-dialog',
+  selector: 'app-create-campus-dialog',
   standalone: true,
   imports: [
     CommonModule,
@@ -166,7 +51,7 @@ import { AbpValidationError } from '@shared/components/validation/abp-validation
               Password is required.
             </small>
             <small class="text-red-500" *ngIf="passwordInvalid">
-              {{ passwordValidationErrors[0].localizationKey }}
+              {{ passwordValidationErrors[0].localizationKey | abpLocalization }}
             </small>
           </div>
           <div>
@@ -176,24 +61,20 @@ import { AbpValidationError } from '@shared/components/validation/abp-validation
               Confirm Password is required.
             </small>
             <small class="text-red-500" *ngIf="passwordsDoNotMatch">
-              {{ confirmPasswordValidationErrors[0].localizationKey }}
+              {{ confirmPasswordValidationErrors[0].localizationKey | abpLocalization }}
             </small>
           </div>
           <div>
             <label class="block font-bold mb-3">Roles</label>
             <div class="flex flex-col gap-2">
               <div *ngFor="let role of roles" class="flex items-center">
-                <div class="flex items-center">
-                  <p-checkbox [binary]="true" [ngModel]="checkedRolesMap[role.normalizedName]"
-                              (ngModelChange)="onRoleChange(role, $event)"></p-checkbox>
-                  <label class="ml-2">{{ role.displayName }}</label>
-                </div>
+                <p-checkbox [binary]="true" [ngModel]="checkedRolesMap[role.normalizedName]"
+                            (ngModelChange)="onRoleChange(role, $event)" [label]="role.displayName"></p-checkbox>
               </div>
             </div>
           </div>
           <div class="flex items-center">
-            <p-checkbox [binary]="true" [(ngModel)]="user.isActive"></p-checkbox>
-            <label class="ml-2">Is Active</label>
+            <p-checkbox [binary]="true" [(ngModel)]="user.isActive" label="Is Active"></p-checkbox>
           </div>
         </div>
       </ng-template>
@@ -296,7 +177,6 @@ export class CreateUserDialogComponent extends AppComponentBase implements OnIni
     }
 
     this.saving = true;
-    this.user.userName = this.user.emailAddress;
     this.user.roleNames = this.getCheckedRoles();
 
     this._userService.create(this.user).subscribe({
@@ -330,4 +210,3 @@ export class CreateUserDialogComponent extends AppComponentBase implements OnIni
     this.submitted = false;
     this.cd.markForCheck();
   }
-}
