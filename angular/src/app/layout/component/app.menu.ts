@@ -31,6 +31,12 @@ export class AppMenu {
                         command: () => console.log('Menu click => Dashboard')
                     },
                     {
+                        label: 'Schools',
+                        icon: 'pi pi-fw pi-school',
+                        routerLink: ['/app', 'schools'],
+                        command: () => console.log('Menu click => Schools')
+                    },
+                    {
                         label: 'Campuses',
                         icon: 'pi pi-fw pi-building',
                         routerLink: ['/app', 'campuses'],

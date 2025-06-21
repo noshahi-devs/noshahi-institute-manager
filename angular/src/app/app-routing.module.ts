@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppRouteGuard } from '@shared/auth/auth-route-guard';
-import { AppComponent } from './app.component';
+import { AppLayout } from './layout/component/app.layout';
 
 @NgModule({
     imports: [
         RouterModule.forChild([
             {
                 path: '',
-                component: AppComponent,
+                component: AppLayout,
                 children: [
                     {
                         path: '',
@@ -35,6 +35,10 @@ import { AppComponent } from './app.component';
                         loadChildren: () => import('./users/users.module').then((m) => m.UsersModule),
                         data: { permission: 'Pages.Users' },
                         canActivate: [AppRouteGuard]
+                    },
+                    {
+                        path: 'schools',
+                        loadChildren: () => import('./schools/schools.module').then((m) => m.SchoolsModule),
                     },
                     {
                         path: 'campuses',

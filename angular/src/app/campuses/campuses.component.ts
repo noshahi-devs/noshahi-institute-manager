@@ -525,7 +525,6 @@ import { finalize } from 'rxjs/operators';
         ConfirmDialogModule,
         InputIconModule,
         IconFieldModule,
-        InputTextarea,
         RatingModule,
         TextareaModule,
         SelectModule,

@@ -1,3 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'famfamfam-flags/dist/sprite/famfamfam-flags.css';
+@import 'sweetalert2/dist/sweetalert2.css';
+@import 'assets/freeze-ui/freeze-ui.css';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import 'admin-lte-css-only/css/adminlte.min.css';
+@import 'primeicons/primeicons.css';
+@import 'assets/layout/layout.scss';
+
 /* Force PrimeNG dialog and overlay to be on top */
 .p-dialog-mask,
 .p-dialog {
